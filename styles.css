@@ -7,7 +7,8 @@
   /* Couleurs */
   --ink:          #14140F;
   --ink-soft:     #1d1d16;
-  --ink-hover:    #2b2b22;
+  --tile:         #2a2a21;   /* tuiles de contact : assez claires pour ressortir sur --ink */
+  --tile-hover:   #3a3a2f;
   --ink-line:     #33332a;
   --ink-line-alt: #2b2b24;
   --ink-dim:      #3d3d33;
@@ -67,12 +68,14 @@ img { max-width: 100%; }
 
 a {
   color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--yellow);
+  text-decoration: none;
 }
-a:hover { color: var(--red); text-decoration-color: var(--red); }
+a:hover { color: var(--red); }
+
+/* Un lien au fil du texte ne se distingue plus par le soulignement : on le
+   garde repérable par la graisse, pas seulement par la couleur (WCAG 1.4.1). */
+.rdv__note a,
+.training__text a { font-weight: 600; }
 
 :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
 
@@ -385,8 +388,8 @@ input, textarea, button { font: inherit; }
   line-height: 1.55;
   color: var(--on-dark);
 }
-.rdv__note a { color: var(--yellow); text-decoration-color: var(--yellow); }
-.rdv__note a:hover { color: var(--paper); text-decoration-color: var(--paper); }
+.rdv__note a { color: var(--yellow); }
+.rdv__note a:hover { color: var(--paper); }
 
 /* ─────────────────────── L'asso ─────────────────────── */
 
@@ -557,10 +560,9 @@ input, textarea, button { font: inherit; }
 .training__card--red .training__text { color: var(--red-soft); }
 .training__text a {
   color: var(--yellow);
-  text-decoration-color: var(--yellow);
   font-weight: 600;
 }
-.training__text a:hover { color: var(--paper); text-decoration-color: var(--paper); }
+.training__text a:hover { color: var(--paper); }
 
 .routes {
   margin-top: clamp(40px, 5vw, 64px);
@@ -805,6 +807,10 @@ input, textarea, button { font: inherit; }
   gap: 14px;
   box-shadow: var(--sh-lg);
 }
+/* Le bloc s'étire pour s'aligner sur le formulaire : le surplus va dans les
+   tuiles, sinon il s'accumule en bas et creuse un vide sous Facebook/Instagram. */
+.channels > * { flex-grow: 1; }
+
 .channels__pair {
   display: grid;
   gap: 14px;
@@ -828,10 +834,10 @@ input, textarea, button { font: inherit; }
 }
 .channel--mail:hover { background: var(--paper-warm); color: var(--ink); }
 .channel--dark {
-  background: var(--ink-soft);
+  background: var(--tile);
   color: var(--paper-warm);
 }
-.channel--dark:hover { background: var(--ink-hover); color: var(--paper-warm); }
+.channel--dark:hover { background: var(--tile-hover); color: var(--paper-warm); }
 
 .channel__icon {
   flex: 0 0 auto;
@@ -861,13 +867,14 @@ input, textarea, button { font: inherit; }
 }
 
 .form {
+  --form-gap: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--form-gap);
   align-self: stretch;
   background: var(--paper);
   border-radius: 28px;
-  padding: clamp(22px, 3vw, 32px);
+  padding: clamp(22px, 3vw, 30px);   /* même retrait que .channels, pour aligner les bas */
   box-shadow: 0 14px 40px rgba(20, 20, 15, .10);
 }
 .field {
@@ -880,7 +887,7 @@ input, textarea, button { font: inherit; }
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-height: 150px;
+  min-height: 200px;   /* plancher : garde le champ Message généreux même non étiré */
 }
 .field input,
 .field textarea {
@@ -902,6 +909,14 @@ input, textarea, button { font: inherit; }
   font-size: 14px;
   color: var(--muted);
   min-height: 1lh;
+}
+/* Vide, ce message ne doit rien occuper : sa hauteur réservée et son gap
+   creusaient 38 px sous le bouton. On l'aplatit sans le retirer du rendu —
+   un aria-live en display:none n'est plus annoncé de façon fiable. */
+.form__status:empty {
+  min-height: 0;
+  height: 0;
+  margin-top: calc(var(--form-gap) * -1);
 }
 .form__status.is-error { color: var(--red); font-weight: 600; }
 
@@ -1009,10 +1024,9 @@ input, textarea, button { font: inherit; }
   font-size: 11px;
   letter-spacing: .14em;
   text-transform: uppercase;
-  text-decoration-color: var(--yellow);
   padding: 6px 0;
 }
-.site-footer__links a:hover { color: var(--yellow); text-decoration-color: var(--yellow); }
+.site-footer__links a:hover { color: var(--yellow); }
 
 /* ───────────────────────── Modale ───────────────────────── */
 

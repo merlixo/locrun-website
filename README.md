@@ -44,8 +44,9 @@ vers l'ancienne adresse.
 
 ## Modifier le contenu
 
-Tout ce qui change au fil de la saison est regroupé **en haut de
-[`app.js`](app.js)**, dans un seul bloc :
+Tout ce qui change au fil de la saison est regroupé dans un seul
+fichier, **[`contenu.js`](contenu.js)**. Il n'y a jamais besoin
+d'ouvrir `app.js` :
 
 | Constante    | Rôle |
 |--------------|------|
@@ -61,17 +62,20 @@ date, sans intervention.
 ### Restant à compléter
 
 - `LIENS.helloasso` : URL provisoire, à remplacer par la vraie campagne.
-- `MENTIONS` → « Hébergement » : nom, adresse postale et téléphone de
-  l'hébergeur (obligatoire).
 - Trois emplacements partenaires libres dans `index.html`
   (`.partners__slot` marqués `[À COMPLÉTER]`).
+
+La mention d'hébergeur est renseignée (Vercel Inc., Covina CA). La LCEN
+demande aussi un téléphone : Vercel n'en publie pas, seulement
+<https://vercel.com/help>. À réviser si le site change d'hébergeur.
 
 ## Structure
 
 ```
 index.html    balisage
 styles.css    styles (tokens en haut du fichier)
-app.js        contenu éditable + comportements
+contenu.js    ← le fichier à modifier : liens, agenda, mentions, statuts
+app.js        comportements (menu, agenda, modales, formulaire)
 assets/       images
 vercel.json   en-têtes de cache et de sécurité
 ```
