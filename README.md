@@ -18,8 +18,29 @@ les restrictions `file://`.)
 
 ## Mettre en ligne
 
-Déposer le dossier tel quel sur n'importe quel hébergeur statique
+Déployé sur Vercel : <https://locrun.vercel.app>
+
+Aucune configuration à faire — pas de `package.json`, donc Vercel sert la
+racine du dépôt telle quelle (preset « Other », pas d'étape de build).
+Chaque push sur `main` redéploie.
+
+Le site marche aussi sur n'importe quel autre hébergeur statique
 (Netlify, Cloudflare Pages, GitHub Pages, OVH…). Pas de backend.
+
+### ⚠️ En cas de remplacement d'une image
+
+[`vercel.json`](vercel.json) met `assets/` en cache **un an, en
+`immutable`**. Les noms de fichiers ne sont pas hashés : remplacer une
+image sans changer son nom ne sera donc **pas** visible par les visiteurs
+déjà venus sur le site. Pour changer une photo, lui donner un nouveau nom
+(`photo-sortie-chemin-2.jpg`) et mettre à jour `index.html`.
+
+### Si le domaine change
+
+Trois URL sont écrites en dur dans le `<head>` de `index.html` :
+`canonical`, `og:url` et `og:image`. Les mettre à jour, sinon les aperçus
+de partage (Facebook, WhatsApp, iMessage…) et le référencement pointeront
+vers l'ancienne adresse.
 
 ## Modifier le contenu
 
@@ -52,6 +73,7 @@ index.html    balisage
 styles.css    styles (tokens en haut du fichier)
 app.js        contenu éditable + comportements
 assets/       images
+vercel.json   en-têtes de cache et de sécurité
 ```
 
 ## Notes d'implémentation
