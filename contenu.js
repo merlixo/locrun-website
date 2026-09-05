@@ -1,7 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════
    LOC'RUN — contenu du site.
    C'est LE seul fichier à modifier au fil de la saison : liens,
-   agenda, mentions légales, statuts. Rien à toucher dans app.js.
+   agenda, partenaires, mentions légales, statuts. Rien à toucher
+   dans app.js.
 
    Chargé par index.html juste avant app.js.
    ═══════════════════════════════════════════════════════════════ */
@@ -11,21 +12,30 @@
    date  : "AAAA-MM-JJ" (l'événement passe tout seul dans l'onglet « Passés »)
    type  : "SORTIE" · "COURSE" · "VIE DE L'ASSO"
    inscriptions : true affiche le badge rouge INSCRIPTIONS OUVERTES, sinon false
-   distance : texte libre, ou "" si ça n'a pas de sens                            */
+   distance : texte libre affiché à droite (distance, horaire…), ou ""
+   lien  : site de l'événement — le titre devient cliquable — ou ""          */
 const EVENEMENTS = [
-  { date: "2026-09-13", titre: "Sortie découverte des chemins", lieu: "Départ : stade municipal, Bouloc", distance: "8 KM",  type: "SORTIE",        inscriptions: false },
-  { date: "2026-10-11", titre: "Foulées de Castelnau",          lieu: "Castelnau-d'Estrétefonds",         distance: "10 KM", type: "COURSE",        inscriptions: true  },
-  { date: "2026-11-20", titre: "Assemblée générale",            lieu: "Salle des fêtes, Bouloc",          distance: "",      type: "VIE DE L'ASSO", inscriptions: false },
-  { date: "2026-06-21", titre: "Sortie de fin de saison",       lieu: "Départ : place de la mairie",      distance: "12 KM", type: "SORTIE",        inscriptions: false },
-  { date: "2026-04-05", titre: "Première sortie collective",    lieu: "Chemins autour du village",        distance: "6 KM",  type: "SORTIE",        inscriptions: false }
+  { date: "2026-09-05", titre: "Forum des associations", lieu: "Villeneuve-lès-Bouloc",                                    distance: "9H30 · 14H–17H", type: "VIE DE L'ASSO", inscriptions: false, lien: "" },
+  { date: "2026-09-12", titre: "L'Épicurienne (trail)",  lieu: "Castelnau-d'Estrétefonds — 11, 16 ou 21 km, marche 11 km", distance: "11–21 KM",       type: "COURSE",        inscriptions: false, lien: "https://www.epicurienne-trail.com/" },
+  { date: "2026-10-11", titre: "La Belle Rose",          lieu: "Bouloc — course, marche nordique, randonnée",             distance: "",               type: "COURSE",        inscriptions: true,  lien: "https://la-belle-rose.adeorun.com/" },
+  { date: "2026-01-04", titre: "1ère sortie collective", lieu: "Bouloc — les débuts du club",                             distance: "",               type: "SORTIE",        inscriptions: false, lien: "" }
 ];
 
-// URL provisoire — remplacer par la vraie campagne HelloAsso
+/* PARTENAIRES — un encart par ligne, dans l'ordre d'affichage.
+   logo : déposer l'image dans assets/ puis écrire son chemin ici ; tant que
+          logo vaut "", c'est le nom qui s'affiche dans l'encart.
+   url  : site du partenaire (l'encart devient cliquable), ou ""             */
+const PARTENAIRES = [
+  { nom: "Mairie de Bouloc",             logo: "assets/logo-mairie-bouloc.png", url: "" },
+  { nom: "Partenaire 2\n[à compléter]",  logo: "",                             url: "" },
+  { nom: "Partenaire 3\n[à compléter]",  logo: "",                             url: "" },
+  { nom: "Partenaire 4\n[à compléter]",  logo: "",                             url: "" }
+];
+
 const LIENS = {
-  helloasso: "https://www.helloasso.com/associations/loc-run",
-  facebook:  "https://www.facebook.com/groups/boulocoursapied",
+  helloasso: "https://www.helloasso.com/associations/loc-run/adhesions/saison-loc-run-2026-2027",
   instagram: "https://www.instagram.com/boulocrunning",
-  whatsapp:  "https://chat.whatsapp.com/KNjFjfBC0QyEYOcIFbpHJP"
+  whatsapp:  "https://chat.whatsapp.com/KNjFjfBC0QyEYOcIFbpHJP"   // invitation à la communauté
 };
 
 const CONTACT = {
@@ -48,7 +58,8 @@ const MENTIONS = {
   ]
 };
 
-/* STATUTS — articles de base d'une association loi 1901. */
+/* STATUTS — ⚠ texte générique d'association loi 1901, à remplacer par les
+   articles des statuts réellement adoptés le 9 février 2026. */
 const STATUTS = {
   titre: "Statuts de l'association",
   pied: "Statuts adoptés par l'assemblée générale constitutive du 9 février 2026.",

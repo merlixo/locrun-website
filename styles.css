@@ -268,6 +268,7 @@ input, textarea, button { font: inherit; }
 }
 .eyebrow--yellow { color: var(--yellow); }
 .eyebrow--red    { color: var(--red); letter-spacing: .2em; }
+.eyebrow--lg     { font-size: 14px; }
 
 /* ─────────────────────── Boutons ─────────────────────── */
 
@@ -311,13 +312,15 @@ input, textarea, button { font: inherit; }
   align-items: center;
 }
 
-.hero__logo {
-  width: clamp(104px, 14vw, 140px);
-  height: auto;
+.hero__banner {
   display: block;
-  margin: 0 0 20px;
-  filter: drop-shadow(0 8px 22px rgba(20, 20, 15, .18));
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto 24px;          /* centrée sur mobile… */
+  mix-blend-mode: multiply;     /* fond blanc du JPG fondu dans le crème */
 }
+@media (min-width: 880px) { .hero__banner { margin-left: 0; } }   /* …calée à gauche avec le titre sinon */
 .hero__title {
   font-size: clamp(40px, 8.5vw, 76px);
   line-height: .95;
@@ -517,7 +520,7 @@ input, textarea, button { font: inherit; }
   color: var(--yellow);
 }
 
-/* ───────────────────── Entraînements ───────────────────── */
+/* ──────────────────── Sorties de running ──────────────────── */
 
 .training {
   display: grid;
@@ -544,12 +547,24 @@ input, textarea, button { font: inherit; }
 }
 .training__card--red .training__label { color: var(--red-soft); }
 .training__hour {
-  margin: 0 0 18px;
+  margin: 0 0 12px;
   font-weight: 700;
   font-size: clamp(40px, 8vw, 60px);
   line-height: 1;
   letter-spacing: -.03em;
 }
+.training__place {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--paper-warm);
+}
+.training__place svg { flex: 0 0 auto; color: var(--yellow); }
 .training__free {
   margin: 0 0 18px;
   font-size: clamp(34px, 6.4vw, 48px);
@@ -702,6 +717,9 @@ input, textarea, button { font: inherit; }
   font-size: clamp(20px, 2.6vw, 26px);
   line-height: 1.05;
 }
+.event__title a { color: inherit; }
+.event__title a::after { content: " ↗"; color: var(--red); font-size: .8em; }
+.event__title a:hover { color: var(--red); }
 .event__place { margin: 0; color: var(--muted); font-size: 15px; }
 .event__distance {
   flex: 0 0 auto;
@@ -808,7 +826,7 @@ input, textarea, button { font: inherit; }
   box-shadow: var(--sh-lg);
 }
 /* Le bloc s'étire pour s'aligner sur le formulaire : le surplus va dans les
-   tuiles, sinon il s'accumule en bas et creuse un vide sous Facebook/Instagram. */
+   tuiles, sinon il s'accumule en bas et creuse un vide sous la dernière tuile. */
 .channels > * { flex-grow: 1; }
 
 .channels__pair {
@@ -858,12 +876,13 @@ input, textarea, button { font: inherit; }
 }
 .channel__label--dark { color: var(--ink-dim); }
 .channel__value { display: block; font-size: 16px; line-height: 1.3; }
+.channel__value--tel  { white-space: nowrap; font-size: 14px; }
 .channel__value--mail {
   font-weight: 700;
   font-size: clamp(13px, 3.6vw, 22px);
   letter-spacing: -.01em;
   line-height: 1.2;
-  word-break: break-all;
+  overflow-wrap: anywhere;   /* coupe au <wbr> avant le @ ; en dernier recours n'importe où */
 }
 
 .form {
@@ -931,7 +950,8 @@ input, textarea, button { font: inherit; }
   margin: 0 auto;
   padding: clamp(56px, 8vw, 104px) var(--gutter);
 }
-.partners__title { margin-bottom: 28px; }
+.partners__title  { margin-bottom: 12px; }
+.partners__kicker { margin: 0 0 28px; }
 .partners__title span { display: block; }
 
 .partners__logos {
@@ -942,6 +962,7 @@ input, textarea, button { font: inherit; }
 }
 .partners__slot {
   flex: 1 1 200px;
+  color: inherit;
   min-height: 104px;
   background: var(--paper);
   border-radius: 20px;
@@ -959,6 +980,9 @@ input, textarea, button { font: inherit; }
 .partners__todo {
   font-size: 10px;
   letter-spacing: .14em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  white-space: pre-line;
   color: var(--muted);
   text-align: center;
 }
@@ -1019,14 +1043,17 @@ input, textarea, button { font: inherit; }
   align-items: center;
   gap: 20px;
 }
-.site-footer__links a {
+.site-footer__links a,
+.site-footer__btn {
   color: var(--paper-warm);
   font-size: 11px;
   letter-spacing: .14em;
   text-transform: uppercase;
   padding: 6px 0;
 }
-.site-footer__links a:hover { color: var(--yellow); }
+.site-footer__btn { background: none; border: 0; cursor: pointer; }
+.site-footer__links a:hover,
+.site-footer__btn:hover { color: var(--yellow); }
 
 /* ───────────────────────── Modale ───────────────────────── */
 

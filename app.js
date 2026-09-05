@@ -17,6 +17,29 @@ $$("[data-link]").forEach(a => {
   if (url) a.href = url;
 });
 
+/* ─────────────── Partenaires ─────────────── */
+
+const logos = $("#partners-logos");
+for (const part of PARTENAIRES) {
+  const slot = document.createElement(part.url ? "a" : "div");
+  slot.className = "partners__slot";
+  if (part.url) { slot.href = part.url; slot.target = "_blank"; slot.rel = "noopener"; }
+
+  if (part.logo) {
+    const img = document.createElement("img");
+    img.src = part.logo;
+    img.alt = part.nom;
+    img.loading = "lazy";
+    slot.append(img);
+  } else {
+    const txt = document.createElement("span");
+    txt.className = "mono partners__todo";
+    txt.textContent = part.nom;
+    slot.append(txt);
+  }
+  logos.append(slot);
+}
+
 /* ─────────────── Menu mobile ─────────────── */
 
 const nav     = $("#nav");
@@ -116,7 +139,16 @@ function renderAgenda(onglet) {
 
     const titre = document.createElement("h3");
     titre.className = "display event__title";
-    titre.textContent = ev.titre;
+    if (ev.lien) {
+      const a = document.createElement("a");
+      a.href = ev.lien;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = ev.titre;
+      titre.append(a);
+    } else {
+      titre.textContent = ev.titre;
+    }
 
     const lieu = document.createElement("p");
     lieu.className = "event__place";

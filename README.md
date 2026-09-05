@@ -50,20 +50,24 @@ d'ouvrir `app.js` :
 
 | Constante    | Rôle |
 |--------------|------|
-| `LIENS`      | HelloAsso, Facebook, Instagram, WhatsApp |
-| `CONTACT`    | adresse e-mail et objet du message |
-| `EVENEMENTS` | agenda — dupliquer une ligne pour ajouter une date |
-| `MENTIONS`   | mentions légales (affichées en modale) |
-| `STATUTS`    | statuts de l'association (affichés en modale) |
+| `LIENS`       | HelloAsso (campagne d'adhésion), Instagram, WhatsApp |
+| `CONTACT`     | adresse e-mail et objet du message |
+| `EVENEMENTS`  | agenda — dupliquer une ligne pour ajouter une date ; `lien` rend le titre cliquable |
+| `PARTENAIRES` | encarts partenaires — déposer le logo dans `assets/`, écrire son chemin dans `logo` |
+| `MENTIONS`    | mentions légales (affichées en modale) |
+| `STATUTS`     | statuts de l'association (affichés en modale) |
 
 Un événement passe tout seul de l'onglet « À venir » à « Passés » selon sa
 date, sans intervention.
 
 ### Restant à compléter
 
-- `LIENS.helloasso` : URL provisoire, à remplacer par la vraie campagne.
-- Trois emplacements partenaires libres dans `index.html`
-  (`.partners__slot` marqués `[À COMPLÉTER]`).
+- `PARTENAIRES` : trois encarts attendent leur logo (visuels à venir).
+- `STATUTS` : le texte affiché est un canevas générique loi 1901, **pas** les
+  statuts réellement adoptés — à remplacer par les vrais articles (ou par un
+  lien vers le PDF signé).
+- Aucune page Facebook publique n'a pu être trouvée : le club communique via
+  WhatsApp et Instagram, Facebook a donc été retiré du site.
 
 La mention d'hébergeur est renseignée (Vercel Inc., Covina CA). La LCEN
 demande aussi un téléphone : Vercel n'en publie pas, seulement
