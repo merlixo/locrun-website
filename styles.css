@@ -950,8 +950,7 @@ input, textarea, button { font: inherit; }
   margin: 0 auto;
   padding: clamp(56px, 8vw, 104px) var(--gutter);
 }
-.partners__title  { margin-bottom: 12px; }
-.partners__kicker { margin: 0 0 28px; }
+.partners__title { margin-bottom: 28px; }
 .partners__title span { display: block; }
 
 .partners__logos {
