@@ -19,7 +19,7 @@ const EVENEMENTS = [
   { date: "2026-09-12", titre: "L'Épicurienne (trail)",  lieu: "Castelnau-d'Estrétefonds — 11, 16 ou 21 km, marche 11 km", distance: "11–21 KM",       type: "COURSE",        inscriptions: false, lien: "https://www.epicurienne-trail.com/" },
   { date: "2026-10-11", titre: "La Belle Rose",          lieu: "Bouloc — course, marche nordique, randonnée",             distance: "",               type: "COURSE",        inscriptions: true,  lien: "https://la-belle-rose.adeorun.com/" },
   { date: "2026-01-04", titre: "1ère sortie collective", lieu: "Bouloc — les débuts du club",                             distance: "",               type: "SORTIE",        inscriptions: false, lien: "" },
-  { date: "2026-11-29", titre: "Semi-marathon de Saint-Jory",   lieu: "Halle des Sports Allison Pineau",  distance: "Semi-marathon",  type: "COURSE",inscriptions: false, lien: "https://chrono-start.com/events/semi-marathon-de-saint-jory/" }
+  { date: "2026-11-29", titre: "Semi-marathon de Saint-Jory",   lieu: "Halle des Sports Allison Pineau",  distance: "Semi-marathon",  type: "COURSE",inscriptions: true, lien: "https://chrono-start.com/events/semi-marathon-de-saint-jory/" }
 ];
 
 /* PARTENAIRES — un encart par ligne, dans l'ordre d'affichage.
