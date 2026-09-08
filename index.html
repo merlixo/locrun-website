@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Loc'Run — courir à Bouloc | Association de course à pied (31620)</title>
 <meta name="description" content="Loc'Run, association de course à pied à Bouloc (31620), au nord de Toulouse. Sorties le mardi 19h et le dimanche 9h30 au stade de Bouloc, ouvertes à tous, débutants compris.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#F6F4EE">
+<meta name="geo.region" content="FR-31">
+<meta name="geo.placename" content="Bouloc, Haute-Garonne">
 <link rel="canonical" href="https://locrun.vercel.app/">
 <meta property="og:title" content="Loc'Run — courir ensemble, aller plus loin">
 <meta property="og:description" content="Association de course à pied à Bouloc (31620). Sorties le mardi et le dimanche, ouvertes à tous les niveaux.">
@@ -13,7 +16,12 @@
 <meta property="og:url" content="https://locrun.vercel.app/">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:image" content="https://locrun.vercel.app/assets/photo-sortie-chemin.jpg">
+<meta property="og:site_name" content="Loc'Run">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="Coureurs de Loc'Run sur un chemin autour de Bouloc">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://locrun.vercel.app/assets/photo-sortie-chemin.jpg">
 
 <link rel="icon" href="assets/logo-rond-move-free.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/logo-rond-move-free.png">
@@ -23,8 +31,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Martian+Mono:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 
+<!-- Données structurées : identité de l'association pour Google.
+     Les événements de l'agenda sont ajoutés dynamiquement par app.js
+     à partir de EVENEMENTS (contenu.js). -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SportsClub","name":"Loc'Run","sport":"Course à pied","slogan":"Courir ensemble, aller plus loin","email":"assolocrun@outlook.com","telephone":"+33677085817","address":{"@type":"PostalAddress","streetAddress":"5 impasse de Narquières","postalCode":"31620","addressLocality":"Bouloc","addressRegion":"Haute-Garonne","addressCountry":"FR"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"19:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:30"}]}
+{"@context":"https://schema.org","@graph":[{"@type":"SportsClub","@id":"https://locrun.vercel.app/#club","name":"Loc'Run","alternateName":"Loc'Run Bouloc","sport":"Course à pied","slogan":"Courir ensemble, aller plus loin","description":"Loc'Run est une association de course à pied loi 1901 basée à Bouloc (31620), au nord de Toulouse. Sorties collectives le mardi à 19h et le dimanche à 9h30 au stade de Bouloc, ouvertes à tous les niveaux, débutants compris, sans licence obligatoire.","url":"https://locrun.vercel.app/","logo":"https://locrun.vercel.app/assets/logo-locrun-baseline-trim.png","image":"https://locrun.vercel.app/assets/photo-sortie-chemin.jpg","email":"assolocrun@outlook.com","telephone":"+33677085817","foundingDate":"2026-02-09","knowsLanguage":"fr","sameAs":["https://www.instagram.com/boulocrunning","https://www.helloasso.com/associations/loc-run"],"address":{"@type":"PostalAddress","streetAddress":"5 impasse de Narquières","postalCode":"31620","addressLocality":"Bouloc","addressRegion":"Haute-Garonne","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":43.7864,"longitude":1.4139},"areaServed":[{"@type":"City","name":"Bouloc"},{"@type":"City","name":"Villeneuve-lès-Bouloc"},{"@type":"City","name":"Castelnau-d'Estrétefonds"},{"@type":"City","name":"Saint-Sauveur"},{"@type":"City","name":"Fronton"},{"@type":"AdministrativeArea","name":"Haute-Garonne"}],"location":{"@type":"Place","name":"Stade de Bouloc","address":{"@type":"PostalAddress","postalCode":"31620","addressLocality":"Bouloc","addressCountry":"FR"}},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"19:00","closes":"20:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:30","closes":"11:30"}],"potentialAction":{"@type":"JoinAction","name":"Adhérer à Loc'Run","target":"https://www.helloasso.com/associations/loc-run/adhesions/saison-loc-run-2026-2027"}},{"@type":"WebSite","@id":"https://locrun.vercel.app/#website","url":"https://locrun.vercel.app/","name":"Loc'Run","inLanguage":"fr-FR","publisher":{"@id":"https://locrun.vercel.app/#club"}},{"@type":"WebPage","@id":"https://locrun.vercel.app/#webpage","url":"https://locrun.vercel.app/","name":"Loc'Run — courir à Bouloc | Association de course à pied (31620)","isPartOf":{"@id":"https://locrun.vercel.app/#website"},"about":{"@id":"https://locrun.vercel.app/#club"},"inLanguage":"fr-FR","primaryImageOfPage":{"@type":"ImageObject","url":"https://locrun.vercel.app/assets/photo-sortie-chemin.jpg"}}]}
 </script>
 </head>
 <body>
@@ -70,7 +81,7 @@
   <!-- ══════════ HERO ══════════ -->
   <section class="hero">
     <div class="hero__intro">
-      <img class="hero__banner" src="assets/logo-baniere.jpg" alt="Loc'Run Bouloc — Move free. Courir, partager, se dépasser." width="2083" height="793" fetchpriority="high">
+      <img class="hero__banner" src="assets/logo-baniere.jpg" alt="Loc'Run Bouloc — Move free. Courir, partager, se dépasser." width="1400" height="633" fetchpriority="high">
       <h1 class="display hero__title">Courir ensemble,<br><em>aller plus loin</em></h1>
       <p class="hero__lead">Association de course à pied à Bouloc. <br>Ouvert à tous, accessible à chacun.</p>
       <div class="hero__actions">
@@ -340,6 +351,14 @@
       <a class="mono" data-link="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
       <a class="mono" data-link="helloasso" href="#" target="_blank" rel="noopener">HelloAsso</a>
     </div>
+
+    <p class="site-footer__about">
+      Loc'Run est une association de course à pied loi 1901 basée à
+      <strong>Bouloc (31620)</strong>, au nord de Toulouse. Les sorties partent du stade
+      de Bouloc le mardi à 19h et le dimanche à 9h30, et rassemblent des coureurs de
+      Bouloc, Villeneuve-lès-Bouloc, Castelnau-d'Estrétefonds, Saint-Sauveur et Fronton.
+      Débutant ou habitué, licencié ou non : il y a un groupe d'allure pour toi.
+    </p>
   </div>
 </footer>
 

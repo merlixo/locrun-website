@@ -37,10 +37,46 @@ déjà venus sur le site. Pour changer une photo, lui donner un nouveau nom
 
 ### Si le domaine change
 
-Trois URL sont écrites en dur dans le `<head>` de `index.html` :
-`canonical`, `og:url` et `og:image`. Les mettre à jour, sinon les aperçus
-de partage (Facebook, WhatsApp, iMessage…) et le référencement pointeront
-vers l'ancienne adresse.
+Des URL sont écrites en dur dans `index.html` (`canonical`, `og:url`,
+`og:image`, `twitter:image` et le bloc JSON-LD), ainsi que dans
+`robots.txt`, `sitemap.xml` et la fonction `baliserEvenements()` de
+`app.js`. Les mettre à jour, sinon les aperçus de partage (Facebook,
+WhatsApp, iMessage…) et le référencement pointeront vers l'ancienne
+adresse. Vérification : `grep -rn "locrun.vercel.app" --exclude-dir=.git .`
+
+## Référencement (SEO)
+
+Le site est indexable : pas d'en-tête `noindex`, un `robots.txt` ouvert et un
+`sitemap.xml`. Ce qui est en place côté code :
+
+| Fichier | Rôle |
+|---------|------|
+| `robots.txt`  | autorise tous les robots, déclare le sitemap |
+| `sitemap.xml` | l'unique URL du site — mettre `<lastmod>` à jour de temps en temps |
+| `index.html`  | `title`, `description`, `canonical`, Open Graph, `robots`, JSON-LD `SportsClub` + `WebSite` + `WebPage` |
+| `app.js`      | génère le JSON-LD `SportsEvent` de l'agenda depuis `EVENEMENTS` — rien à écrire à la main |
+
+**Ce que le code ne peut pas faire.** Un site neuf n'est pas indexé tout seul :
+il faut le déclarer et lui donner des liens entrants.
+
+1. **Google Search Console** — <https://search.google.com/search-console> :
+   ajouter `https://locrun.vercel.app`, valider par balise HTML (à coller dans
+   le `<head>`), puis « Inspection de l'URL » → « Demander une indexation ».
+   C'est l'étape indispensable.
+2. **Liens entrants** : mairie de Bouloc, offices de tourisme, annuaires
+   d'associations (Le Compte Asso, HelloAsso, Jogging-International…), bio
+   Instagram, pages des courses auxquelles le club participe. C'est le
+   principal levier de classement pour un site local.
+3. **Google Business Profile** — <https://business.google.com> : fiche
+   « club de course à pied » à Bouloc. C'est elle qui fait apparaître le club
+   dans Google Maps et dans le bloc local des résultats.
+4. **Nom de domaine propre** (`locrun.fr`, ~10 €/an) : `*.vercel.app` est un
+   domaine partagé par des milliers de projets et inspire peu confiance à
+   Google comme aux visiteurs. En cas de changement, voir « Si le domaine
+   change » plus haut — et penser à `robots.txt` et `sitemap.xml`.
+
+Les coordonnées `geo` du JSON-LD sont celles du centre de la commune, pas du
+siège : à affiner si la fiche Google Business est créée.
 
 ## Modifier le contenu
 
@@ -73,15 +109,29 @@ La mention d'hébergeur est renseignée (Vercel Inc., Covina CA). La LCEN
 demande aussi un téléphone : Vercel n'en publie pas, seulement
 <https://vercel.com/help>. À réviser si le site change d'hébergeur.
 
+## Licence
+
+Le code (HTML, CSS, JavaScript) est sous [licence MIT](LICENSE) : réutilisable
+librement, y compris comme point de départ pour le site d'une autre
+association.
+
+**En revanche, le nom, le logo, la bannière, les photographies et les textes
+restent la propriété de Loc'Run, tous droits réservés.** Les photos montrent
+des adhérents identifiables : leur réutilisation nécessite un accord écrit.
+Le détail figure dans le fichier [`LICENSE`](LICENSE).
+
 ## Structure
 
 ```
 index.html    balisage
 styles.css    styles (tokens en haut du fichier)
-contenu.js    ← le fichier à modifier : liens, agenda, mentions, statuts
+contenu.js    ← le fichier à modifier : liens, agenda, partenaires, mentions, statuts
 app.js        comportements (menu, agenda, modales, formulaire)
 assets/       images
 vercel.json   en-têtes de cache et de sécurité
+robots.txt    autorisation d'indexation + adresse du sitemap
+sitemap.xml   la page du site, pour Google
+LICENSE       MIT pour le code, tous droits réservés pour les visuels
 ```
 
 ## Notes d'implémentation

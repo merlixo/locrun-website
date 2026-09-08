@@ -182,6 +182,44 @@ tabs.forEach(tab => {
 
 renderAgenda("avenir");
 
+/* ─── Données structurées de l'agenda (SEO) ───
+   Google lit le JSON-LD injecté par script. Une seule source de vérité :
+   EVENEMENTS dans contenu.js. Seuls les événements à venir sont déclarés. */
+
+function baliserEvenements() {
+  const club = { "@type": "SportsClub", "@id": "https://locrun.vercel.app/#club", name: "Loc'Run" };
+
+  const items = evenementsPour("avenir").map(ev => {
+    const ville = ev.lieu.split("—")[0].trim();
+    const e = {
+      "@type": "SportsEvent",
+      name: ev.titre,
+      startDate: ev.date,
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      description: ev.lieu,
+      location: {
+        "@type": "Place",
+        name: ville || "Bouloc",
+        address: { "@type": "PostalAddress", addressLocality: ville || "Bouloc", addressRegion: "Haute-Garonne", addressCountry: "FR" }
+      },
+      organizer: club,
+      image: "https://locrun.vercel.app/assets/photo-sortie-chemin.jpg"
+    };
+    if (ev.lien) e.url = ev.lien;
+    return e;
+  });
+
+  if (!items.length) return;
+
+  const tag = document.createElement("script");
+  tag.type = "application/ld+json";
+  tag.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": items });
+  document.head.append(tag);
+}
+
+baliserEvenements();
+
 /* ─────────────── Modales (statuts, mentions) ─────────────── */
 
 const modal      = $("#modal");

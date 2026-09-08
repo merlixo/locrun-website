@@ -1,0 +1,7 @@
+# Loc'Run — https://locrun.vercel.app
+# Tout le site est ouvert à l'indexation.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://locrun.vercel.app/sitemap.xml

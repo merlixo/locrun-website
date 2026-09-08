@@ -1149,3 +1149,13 @@ body.is-locked { overflow: hidden; }
   transition: opacity .5s ease, transform .5s cubic-bezier(.2, .7, .3, 1);
 }
 [data-reveal-line].is-in { opacity: 1; transform: none; }
+
+/* Texte de pied de page : contexte de l'asso et ancrage local (SEO). */
+.site-footer__about {
+  flex: 1 1 100%;
+  max-width: 68ch;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(246, 244, 238, .62);
+}
+.site-footer__about strong { color: rgba(246, 244, 238, .85); font-weight: 600; }
