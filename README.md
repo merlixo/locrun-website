@@ -56,6 +56,24 @@ Le site est indexable : pas d'en-tête `noindex`, un `robots.txt` ouvert et un
 | `index.html`  | `title`, `description`, `canonical`, Open Graph, `robots`, JSON-LD `SportsClub` + `WebSite` + `WebPage` |
 | `app.js`      | génère le JSON-LD `SportsEvent` de l'agenda depuis `EVENEMENTS` — rien à écrire à la main |
 
+**La favicon dans les résultats.** L'icône affichée à côté du résultat Google
+est la favicon, et Google exige un **carré dont le côté est un multiple de
+48 px**. D'où `assets/favicon-48.png` et `assets/favicon-144.png`, générés
+depuis `logo-rond-move-free.png` :
+
+```sh
+sips -z 144 144 assets/logo-rond-move-free.png --out assets/favicon-144.png
+sips -z 48  48  assets/logo-rond-move-free.png --out assets/favicon-48.png
+```
+
+Le logo rond est très chargé : à 48 px il n'est plus lisible. Une variante
+simplifiée (monogramme, ou « Loc'Run » seul sans blason ni coureurs) serait
+bien plus reconnaissable — à refaire côté visuel, le code suivra.
+
+Google ne rafraîchit la favicon qu'à son rythme après un nouveau crawl :
+compter plusieurs jours à plusieurs semaines. Et rien ne s'affiche tant que la
+page n'est pas indexée.
+
 **Ce que le code ne peut pas faire.** Un site neuf n'est pas indexé tout seul :
 il faut le déclarer et lui donner des liens entrants.
 
